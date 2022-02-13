@@ -10,6 +10,7 @@ var twoSum = function(nums, target) {
     let right = nums.length - 1;
 
     while (left <= right) {
+        // Here I checked if the different has a key in the hashMap
         let val = (target - nums[left])
         if (val in hashMap) {
             return [left, hashMap[val]]
