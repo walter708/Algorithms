@@ -26,4 +26,4 @@ var productExceptSelf = function(nums) {
     return res;
 };
 
-console.log(productExceptSelf([1, 2, 3, 4]))
+console.log(productExceptSelf([2, 4, 6, 8, 10]))
