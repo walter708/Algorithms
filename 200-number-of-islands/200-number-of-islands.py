@@ -5,6 +5,7 @@ class Solution:
         visit = set()
         for i in range(ROWS):
             for j in range(COLS):
+                if grid[i][j] == "0":continue
                 if self.explore(grid , i , j , visit):
                     count+=1
         return count
