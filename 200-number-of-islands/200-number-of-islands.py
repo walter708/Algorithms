@@ -5,9 +5,9 @@ class Solution:
         visit = set()
         for i in range(ROWS):
             for j in range(COLS):
-                if grid[i][j] == "0":continue
-                if self.explore(grid , i , j , visit):
-                    count+=1
+                if grid[i][j] == "1":
+                    if self.explore(grid , i , j , visit):
+                        count+=1
         return count
     def explore(self, grid, i , j , visit):
         rowBound = i >= 0 and i < len(grid)
