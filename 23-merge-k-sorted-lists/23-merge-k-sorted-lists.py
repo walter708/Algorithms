@@ -9,16 +9,19 @@ class Solution:
         if len(lists)  == 1:return lists[0]
         if len(lists) == 0:return None
         
-        res = self.merger(lists[0] , lists[1])
-        
-        if len(lists) == 2: return res
-        
-        for i in range(2 , len(lists)):
-            res = self.merger(res , lists[i])
-        return res
+        while len(lists) > 1 :
+            mergedList = []
             
+            for i in range(0 , len(lists) , 2):
+                list1 = lists[i]
+                list2 = lists[i+1] if (i + 1) < len(lists) else None
+                mergedList.append(self.mergeList(list1 , list2))
+            lists = mergedList
+        return lists[0]
+                                                
+             
         
-    def merger(self, l1 , l2):
+    def mergeList(self, l1 , l2):
         tail = dummy = ListNode()
 
         while l1 and l2:
