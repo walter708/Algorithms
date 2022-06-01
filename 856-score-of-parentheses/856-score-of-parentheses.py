@@ -1,21 +1,16 @@
 class Solution:
     def scoreOfParentheses(self, s: str) -> int:
+        stack = [0]
         
-        def dfs(i , j):
-            
-            ans = bal = 0
-            
-            for k in range(i , j):
-                bal += 1 if s[k] == "(" else - 1
+        for i in s:
+            if i == "(":
+                stack.append(0)
+            elif i == ")":
+                val = stack.pop()
+                stack[-1] += max((2 * val) , 1)
                 
-                if bal == 0:
-                    if k - i == 1:
-                        ans+=1
-                    else:
-                        ans+= 2 * dfs(i+1 , k)
-                        
-                    i = k + 1
-            return ans
-                    
-        return dfs(0 , len(s))
+        return stack[0]
+            
+        
+
         
