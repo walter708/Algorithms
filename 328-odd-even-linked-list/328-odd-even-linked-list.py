@@ -21,5 +21,5 @@ class Solution:
         
         odd.next = evenHead
         
-        return oddHead       
+        return head      
         
