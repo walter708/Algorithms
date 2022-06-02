@@ -9,30 +9,32 @@ class Solution:
         if not head:
             return None
         
-        l, r, stop = head, head, False
+        prev, cur  = None, head
         
-        def recurseAndReverse(r, left, right):
-            nonlocal l, stop
+        while left > 1:
+            prev = cur 
+            cur = cur.next
+            left, right = left - 1, right - 1
             
-            if right == 1:
-                return 
+        con, tail = prev, cur
+        
+        while right:
+            third = cur.next
+            cur.next = prev
+            prev = cur
+            cur = third
+            right -= 1
+        
+        if con:
+            con.next = prev
+        else:
+            head = prev 
             
-            r = r.next
-            
-            if left > 1:
-                l = l.next
-                
-            recurseAndReverse(r, left - 1, right - 1)
-            
-            if r == l or r.next == l:
-                stop = True
-            
-            if not stop:
-                l.val , r.val = r.val , l.val
-                
-                l = l.next
-        recurseAndReverse(r, left , right)
+        tail.next  = cur
+        
         return head
+    
+        
         
         
         
