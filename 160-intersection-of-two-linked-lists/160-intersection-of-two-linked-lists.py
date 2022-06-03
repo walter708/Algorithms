@@ -9,38 +9,11 @@ class Solution:
         l1 = headA 
         l2 = headB
         
-        c1 = 0
-        c2 = 0
-        
-        while l1:
-            l1 = l1.next
-            c1+=1
-
-        while l2:
-            l2 = l2.next
-            c2+=1 
-            
-        l1 = headA 
-        l2 = headB   
-        
-        if c1 > c2:
-            diff = c1 - c2
-            while diff:
-                l1 = l1.next
-                diff-=1
-        elif c2 > c1:
-            diff2 = c2 - c1
-            while diff2:
-                l2 = l2.next
-                diff2-=1 
-                
         while l1 != l2:
-            l1 = l1.next
-            l2 = l2.next
+            l1 = l1.next if l1 else headB
+            l2 = l2.next if l2 else headA
             
         return l1
-        
-        
         
         
         
