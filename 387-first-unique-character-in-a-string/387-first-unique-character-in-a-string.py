@@ -3,12 +3,13 @@ class Solution:
         countMap = {}
         
         for cha in s:
-            countMap[cha] = 1 + countMap.get(cha , 0)
+            countMap[cha] = 1 + countMap.get(cha, 0)
         
-        for i in range(len(s)):
-            if countMap[s[i]] == 1:
-                return i
-        return -1
+        for index, cha in enumerate(s):
+            if countMap[cha] == 1:
+                return index
+        return  - 1
+
             
 
         
