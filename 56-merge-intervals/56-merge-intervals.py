@@ -1,17 +1,16 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        intervals.sort()
-        result = [intervals[0]]
-        slow = 0
         
-        for fast in range(1 , len(intervals)):
-            if result[slow][1] < intervals[fast][0]:
-                result.append(intervals[fast])
-                slow+=1
-            elif (result[slow][1] > intervals[fast][0]) and (result[slow][1] > 
-            intervals[fast][1]):
-                continue
-            elif ( result[slow][1] >= intervals[fast][0] ) and (result[slow][1] < intervals[fast]               [1]):
-                result[slow] = [result[slow][0] , intervals[fast][1]]
-        return result
+        intervals.sort()
+        slow = 0
+        res = [intervals[slow]]
+        for fast in range(1,   len(intervals)):              
+            if (res[slow][1] >=  intervals[fast][0]) and (res[slow][1] <  intervals[fast][1]):
+                res[slow] = [res[slow][0], intervals[fast][1]]
+                
+            elif (res[slow][1] <  intervals[fast][0]) and (res[slow][1] <  intervals[fast][1]): 
+                res.append(intervals[fast])
+                slow += 1
+        return res
+
                 
