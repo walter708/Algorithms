@@ -1,19 +1,22 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        groupCount = {}
-        res = []
+        
+        hashMap = {} 
+        
         for s in strs:
-            tmp = sorted(s)
-            tmp = "".join(tmp)
-            if tmp not in groupCount:
-                groupCount[tmp] = []
-            groupCount[tmp].append(s)
-        
-        
-        for key , value in groupCount.items():
-            res.append(value)
             
-        return res
+            array = [0] * 26
+            
+            for l in s:
+                array[ord(l) - ord('a')] +=1
+                
+            if tuple(array) not in hashMap:
+                hashMap[tuple(array)] = []
+                
+            hashMap[tuple(array)].append(s)
+            
+        return hashMap.values()
+
                 
 
          
