@@ -7,40 +7,44 @@ class Solution:
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head or not head.next:
             return head
-        
-        left = head
+        left = head 
         right = self.getMiddle(left)
-        tmp = right.next
+        tmp = right.next 
         right.next = None
         right = tmp
+        
         left = self.sortList(left)
         right = self.sortList(right)
-        return self.merge(left , right)
-    
-    
-    def getMiddle(self , head):
-        slow , fast = head , head.next
         
-        while fast and  fast.next:
-            slow = slow.next
+        return self.merge(left, right)
+    
+    
+    def getMiddle(self, node):
+        slow,fast = node, node.next
+        while fast and fast.next:
+            slow = slow.next 
             fast = fast.next.next
-        return slow
+        return slow 
     
     def merge(self, left, right):
-        tail = dummy = ListNode()
+        dummy = tail = ListNode()
         while left and right:
             if left.val < right.val:
                 tail.next = left
                 left = left.next
             elif right.val <= left.val:
                 tail.next = right
-                right = right.next
+                right = right.next    
+                
             tail = tail.next
-        if left:
-            tail.next = left
         if right:
             tail.next = right
+        if left:
+            tail.next = left
+            
         return dummy.next
+        
+
         
 
 
