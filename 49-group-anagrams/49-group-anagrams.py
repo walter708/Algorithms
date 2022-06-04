@@ -1,14 +1,19 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        countAnagram = {}
+        groupCount = {}
         res = []
-        for i in strs:
-            tmp = sorted(i)
+        for s in strs:
+            tmp = sorted(s)
             tmp = "".join(tmp)
-            if tmp not in countAnagram:
-                countAnagram[tmp] = []
-            countAnagram[tmp].append(i)
-        for key , val in countAnagram.items():
-            res.append(val)
+            if tmp not in groupCount:
+                groupCount[tmp] = []
+            groupCount[tmp].append(s)
+        
+        
+        for key , value in groupCount.items():
+            res.append(value)
+            
         return res
+                
+
          
