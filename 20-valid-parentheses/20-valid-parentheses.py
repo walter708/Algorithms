@@ -1,18 +1,22 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        charMap = {"}" : "{" , "]" : "[" , ")" : "("}
-        stack =[]
-        
-        for char in s:
-            if char in charMap:
-                if stack and charMap[char] == stack[-1]:
+        parenMap = {  ")" : "(",    "}"  : "{",   "]"  : "[" }
+         
+        stack = []
+    
+        for c in s:
+            if c in parenMap:
+                if stack and parenMap[c] == stack[-1]:
                     stack.pop()
                 else:
+                    print("a")
                     return False
             else:
-                stack.append(char)
-                
-        return True if len(stack) == 0 else False 
+                stack.append(c)
+
+        if not stack:
+            return True 
+            
 
 
 
