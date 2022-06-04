@@ -1,28 +1,43 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        if len(coins) == 1 and amount == 0:
-            return 0
-        memo = {} 
-        def dfs(coins, amount, memo):
-            if amount in memo:return memo[amount]
-            if amount == 0:return 0
-            if amount < 0 :return -1
+        memo = {}
+        def dfs(amount, memo):
+            if amount == 0:
+                return [] 
+            if amount < 0:
+                return -1 
+            if amount in memo:
+                return memo[amount]
             
-            mini = float("inf")
-            for i in coins:
-                remainder = amount - i
-                value = dfs(coins , remainder , memo)
-                if value >= 0:
-                    mini = min(value + 1 , mini)
-            memo[amount] = mini
+            miniCoin = -1
+            
+            
+            for coin in coins:
+                rmd = amount - coin
+                
+                value = dfs(rmd, memo)
+                
+                if value != -1:
+                    comb = [i for i in value]
+                    comb.append(coin)
+                    
+                    if  miniCoin == -1 or len(comb) < len(miniCoin):
+                        miniCoin = comb
+                        
+            memo[amount] = miniCoin
+            
             return memo[amount]
+                        
+
+                    
+
         
-        val = dfs(coins , amount , memo)            
-        return val if val != float('inf') else -1
-    
-            
-                
+        val = dfs(amount, memo)
+        return val if val == - 1 else len(val)
                 
             
         
+            
+            
+            
         
